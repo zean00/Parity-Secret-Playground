@@ -1,6 +1,6 @@
 [
   {
-    "name"              : "authority0",
+    "name"              : "secret1",
     "script"            : "app.js",
     "log_date_format"   : "YYYY-MM-DD HH:mm Z",
     "merge_logs"        : false,
@@ -11,17 +11,17 @@
     "env":
     {
       "NODE_ENV"        : "production",
-      "RPC_HOST"        : "authority0",
+      "RPC_HOST"        : "secret1",
       "RPC_PORT"        : "8545",
       "LISTENING_PORT"  : "30303",
-      "INSTANCE_NAME"   : "authority0",
+      "INSTANCE_NAME"   : "secret1",
       "WS_SERVER"       : "ws://dashboard:3000",
       "WS_SECRET"       : "123",
       "VERBOSITY"       : 3
     }
   },
   {
-    "name"              : "authority1",
+    "name"              : "secret2",
     "script"            : "app.js",
     "log_date_format"   : "YYYY-MM-DD HH:mm Z",
     "merge_logs"        : false,
@@ -32,17 +32,17 @@
     "env":
     {
       "NODE_ENV"        : "production",
-      "RPC_HOST"        : "authority1",
+      "RPC_HOST"        : "secret2",
       "RPC_PORT"        : "8545",
       "LISTENING_PORT"  : "30303",
-      "INSTANCE_NAME"   : "authority1",
+      "INSTANCE_NAME"   : "secret2",
       "WS_SERVER"       : "ws://dashboard:3000",
       "WS_SECRET"       : "123",
       "VERBOSITY"       : 3
     }
   },
   {
-    "name"              : "authority2",
+    "name"              : "secret3",
     "script"            : "app.js",
     "log_date_format"   : "YYYY-MM-DD HH:mm Z",
     "merge_logs"        : false,
@@ -53,10 +53,10 @@
     "env":
     {
       "NODE_ENV"        : "production",
-      "RPC_HOST"        : "authority2",
+      "RPC_HOST"        : "secret3",
       "RPC_PORT"        : "8545",
       "LISTENING_PORT"  : "30303",
-      "INSTANCE_NAME"   : "authority2",
+      "INSTANCE_NAME"   : "secret3",
       "WS_SERVER"       : "ws://dashboard:3000",
       "WS_SECRET"       : "123",
       "VERBOSITY"       : 3
