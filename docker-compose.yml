@@ -2,32 +2,30 @@ version: '3'
 services:
   
   member0:
-    image: parity/parity:${PARITY_VERSION}
+    image: parity/parity:beta
     command:
-      --config /parity/config/member.toml
+      --config /parity/config/users.toml
       --dapps-interface 0.0.0.0
       --ws-interface 0.0.0.0
       --ui-interface 0.0.0.0
       --unsafe-expose
     volumes:
       - ./parity/config:/parity/config:ro
-      - ./parity/keys:/root/.local/share/io.parity.ethereum/keys/${NETWORK_NAME}
     ports:
       - 8180:8180
-      - 8546:8546
-      - 30303:30303
+      - 8546:8545
 
 
   member1:
-    image: parity/parity:${PARITY_VERSION}
-    command: --config /parity/config/member.toml
+    image: parity/parity:beta
+    command: --config /parity/config/users.toml
     volumes:
       - ./parity/config:/parity/config:ro
 
 
   member2:
-    image: parity/parity:${PARITY_VERSION}
-    command: --config /parity/config/member.toml
+    image: parity/parity:beta
+    command: --config /parity/config/users.toml
     volumes:
       - ./parity/config:/parity/config:ro
 
@@ -35,13 +33,22 @@ services:
     image: kryha/parity-secretstore
     command:
       --config /parity/config/secret/ss1.toml
+      --ws-interface 0.0.0.0
+      --ui-interface 0.0.0.0
+      --unsafe-expose
     volumes:
       - ./parity/config:/parity/config
+    ports:
+      - 8010:8010
+      - 8545:8545
 
   secret2:
     image: kryha/parity-secretstore
     command:
       --config /parity/config/secret/ss2.toml
+      --ws-interface 0.0.0.0
+      --ui-interface 0.0.0.0
+      --unsafe-expose
     volumes:
       - ./parity/config:/parity/config
 
@@ -49,9 +56,13 @@ services:
     image: kryha/parity-secretstore
     command:
       --config /parity/config/secret/ss3.toml
+      --ws-interface 0.0.0.0
+      --ui-interface 0.0.0.0
+      --unsafe-expose
     volumes:
       - ./parity/config:/parity/config
 
+      
   monitor:
     image: buythewhale/ethstats_monitor
     volumes:
