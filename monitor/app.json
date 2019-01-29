@@ -11,7 +11,7 @@
     "env":
     {
       "NODE_ENV"        : "production",
-      "RPC_HOST"        : "secret1",
+      "RPC_HOST"        : "10.1.0.20",
       "RPC_PORT"        : "8545",
       "LISTENING_PORT"  : "30303",
       "INSTANCE_NAME"   : "secret1",
@@ -32,7 +32,7 @@
     "env":
     {
       "NODE_ENV"        : "production",
-      "RPC_HOST"        : "secret2",
+      "RPC_HOST"        : "10.1.0.21",
       "RPC_PORT"        : "8545",
       "LISTENING_PORT"  : "30303",
       "INSTANCE_NAME"   : "secret2",
@@ -53,7 +53,7 @@
     "env":
     {
       "NODE_ENV"        : "production",
-      "RPC_HOST"        : "secret3",
+      "RPC_HOST"        : "10.1.0.22",
       "RPC_PORT"        : "8545",
       "LISTENING_PORT"  : "30303",
       "INSTANCE_NAME"   : "secret3",
@@ -74,7 +74,7 @@
     "env":
     {
       "NODE_ENV"        : "production",
-      "RPC_HOST"        : "member0",
+      "RPC_HOST"        : "10.1.0.10",
       "RPC_PORT"        : "8545",
       "LISTENING_PORT"  : "30303",
       "INSTANCE_NAME"   : "member0",
@@ -95,7 +95,7 @@
     "env":
     {
       "NODE_ENV"        : "production",
-      "RPC_HOST"        : "member1",
+      "RPC_HOST"        : "10.1.0.11",
       "RPC_PORT"        : "8545",
       "LISTENING_PORT"  : "30303",
       "INSTANCE_NAME"   : "member1",
@@ -116,7 +116,7 @@
     "env":
     {
       "NODE_ENV"        : "production",
-      "RPC_HOST"        : "member2",
+      "RPC_HOST"        : "10.1.0.12",
       "RPC_PORT"        : "8545",
       "LISTENING_PORT"  : "30303",
       "INSTANCE_NAME"   : "member2",
