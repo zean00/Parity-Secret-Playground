@@ -8,7 +8,7 @@ services:
       --ws-interface 0.0.0.0
       --unsafe-expose
     volumes:
-      - ./parity/config:/parity/config
+      - ./parity/config:/parity/config:ro
     ports:
       - 8180:8180
       - 8546:8545
@@ -21,7 +21,7 @@ services:
     image: parity/parity:beta
     command: --config /parity/config/users.toml
     volumes:
-      - ./parity/config:/parity/config
+      - ./parity/config:/parity/config:ro
     networks: 
       eth-net:
           ipv4_address: '10.1.0.11'
@@ -31,7 +31,7 @@ services:
     image: parity/parity:beta
     command: --config /parity/config/users.toml
     volumes:
-      - ./parity/config:/parity/config
+      - ./parity/config:/parity/config:ro
     networks: 
       eth-net:
           ipv4_address: '10.1.0.12'
@@ -79,7 +79,7 @@ services:
   monitor:
     image: buythewhale/ethstats_monitor
     volumes:
-      - ./monitor/app.json:/home/ethnetintel/eth-net-intelligence-api/app.json
+      - ./monitor/app.json:/home/ethnetintel/eth-net-intelligence-api/app.json:ro
     networks: 
       eth-net:
           ipv4_address: '10.1.0.100'
@@ -87,7 +87,7 @@ services:
   dashboard:
     image: buythewhale/ethstats
     volumes:
-      - ./dashboard/ws_secret.json:/eth-netstats/ws_secret.json
+      - ./dashboard/ws_secret.json:/eth-netstats/ws_secret.json:ro
     ports:
       - 3001:3000
     networks: 
