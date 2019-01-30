@@ -10,10 +10,10 @@ services:
     volumes:
       - ./parity/config:/parity/config
       - ./parity/authorities/chaindata/0:/root/.local/share/io.parity.ethereum/
-      - ./parity/authorities/authority0.json:/root/.local/share/io.parity.ethereum/keys/${NETWORK_NAME}/authority.json:ro
-      - ./parity/keys:/root/.local/share/io.parity.ethereum/keys/${NETWORK_NAME}:ro
-      - ./parity/authorities/authority0.pwd:/parity/authorities/authority0.pwd:ro
-      - ./parity/node0.network.key:/root/.local/share/io.parity.ethereum/network/key:ro
+      - ./parity/authorities/authority0.json:/root/.local/share/io.parity.ethereum/keys/${NETWORK_NAME}/authority.json
+      - ./parity/keys:/root/.local/share/io.parity.ethereum/keys/${NETWORK_NAME}
+      - ./parity/authorities/authority0.pwd:/parity/authorities/authority0.pwd
+      - ./parity/node0.network.key:/root/.local/share/io.parity.ethereum/network/key
     ports:
       - 8545:8545
     networks:
@@ -28,9 +28,9 @@ services:
     volumes:
       - ./parity/config:/parity/config
       - ./parity/authorities/chaindata/1:/root/.local/share/io.parity.ethereum/
-      - ./parity/authorities/authority1.json:/root/.local/share/io.parity.ethereum/keys/${NETWORK_NAME}/authority.json:ro
-      - ./parity/authorities/authority1.pwd:/parity/authorities/authority1.pwd:ro
-      - ./parity/node1.network.key:/root/.local/share/io.parity.ethereum/network/key:ro
+      - ./parity/authorities/authority1.json:/root/.local/share/io.parity.ethereum/keys/${NETWORK_NAME}/authority.json
+      - ./parity/authorities/authority1.pwd:/parity/authorities/authority1.pwd
+      - ./parity/node1.network.key:/root/.local/share/io.parity.ethereum/network/key
     ports:
       - 8544:8545
     networks:
@@ -45,9 +45,9 @@ services:
     volumes:
       - ./parity/config:/parity/config
       - ./parity/authorities/chaindata/2:/root/.local/share/io.parity.ethereum/
-      - ./parity/authorities/authority2.json:/root/.local/share/io.parity.ethereum/keys/${NETWORK_NAME}/authority.json:ro
-      - ./parity/authorities/authority2.pwd:/parity/authorities/authority2.pwd:ro
-      - ./parity/node2.network.key:/root/.local/share/io.parity.ethereum/network/key:ro
+      - ./parity/authorities/authority2.json:/root/.local/share/io.parity.ethereum/keys/${NETWORK_NAME}/authority.json
+      - ./parity/authorities/authority2.pwd:/parity/authorities/authority2.pwd
+      - ./parity/node2.network.key:/root/.local/share/io.parity.ethereum/network/key
     ports:
       - 8543:8545
     networks:
@@ -61,8 +61,8 @@ services:
       --ws-interface 0.0.0.0
       --unsafe-expose
     volumes:
-      - ./parity/config:/parity/config:ro
-      - ./parity/keys:/root/.local/share/io.parity.ethereum/keys/${NETWORK_NAME}:ro
+      - ./parity/config:/parity/config
+      - ./parity/keys:/root/.local/share/io.parity.ethereum/keys/${NETWORK_NAME}
     ports:
       - 9180:8180
       - 9546:8546
@@ -75,7 +75,7 @@ services:
     image: parity/parity:${PARITY_VERSION}
     command: --config /parity/config/member.toml
     volumes:
-      - ./parity/config:/parity/config:ro
+      - ./parity/config:/parity/config
     networks:
       app_net:
         ipv4_address: 172.16.0.21
@@ -85,7 +85,7 @@ services:
     image: parity/parity:${PARITY_VERSION}
     command: --config /parity/config/member.toml
     volumes:
-      - ./parity/config:/parity/config:ro
+      - ./parity/config:/parity/config
     networks:
       app_net:
         ipv4_address: 172.16.0.22
@@ -94,7 +94,7 @@ services:
   monitor:
     image: buythewhale/ethstats_monitor
     volumes:
-      - ./monitor/app.json:/home/ethnetintel/eth-net-intelligence-api/app.json:ro
+      - ./monitor/app.json:/home/ethnetintel/eth-net-intelligence-api/app.json
     networks:
       app_net:
         ipv4_address: 172.16.0.100
@@ -142,7 +142,7 @@ services:
   dashboard:
     image: buythewhale/ethstats
     volumes:
-      - ./dashboard/ws_secret.json:/eth-netstats/ws_secret.json:ro
+      - ./dashboard/ws_secret.json:/eth-netstats/ws_secret.json
     ports:
       - 3001:3000
     networks:
