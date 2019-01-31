@@ -1,4 +1,12 @@
-/.gitignore
 .idea
 .DS_Store
-/*.sh
+.DS_Store
+parity/config/secret/db.ss1/chains/DevelopmentChain/db/*
+parity/config/secret/db.ss1/chains/DevelopmentChain/network/*
+parity/config/secret/db.ss1/db/*
+parity/config/secret/db.ss2/chains/DevelopmentChain/db/*
+parity/config/secret/db.ss2/chains/DevelopmentChain/network/*
+parity/config/secret/db.ss2/db/*
+parity/config/secret/db.ss3/chains/DevelopmentChain/db/*
+parity/config/secret/db.ss3/chains/DevelopmentChain/network/*
+parity/config/secret/db.ss3/db/*
