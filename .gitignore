@@ -1,8 +1,10 @@
-.idea
 .DS_Store
-./parity/config/secret/db.ss0/chains/PoA/db/*
-./parity/config/secret/db.ss0/chains/PoA/network/*
-./parity/config/secret/db.ss1/chains/PoA/db/*
-./parity/config/secret/db.ss1/chains/PoA/network/*
-./parity/config/secret/db.ss2/chains/PoA/db/*
-./parity/config/secret/db.ss2/chains/PoA/network/*
+parity/config/secret/db.ss0/chains/PoA/db/*
+parity/config/secret/db.ss0/chains/PoA/network/*
+parity/config/secret/db.ss0/secretstore/db/*
+parity/config/secret/db.ss1/chains/PoA/db/*
+parity/config/secret/db.ss1/chains/PoA/network/*
+parity/config/secret/db.ss1/secretstore/db/*
+parity/config/secret/db.ss2/chains/PoA/db/*
+parity/config/secret/db.ss2/chains/PoA/network/*
+parity/config/secret/db.ss2/secretstore/db/*
