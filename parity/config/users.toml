@@ -6,14 +6,13 @@ disable = false
 interface = "0.0.0.0"
 cors = ["all"]
 hosts = ["all"]
-apis = ["web3", "eth", "net", "parity", "traces", "rpc", "personal", "parity_accounts", "secretstore", "signer", "parity_set"]
+apis = ["web3", "eth", "net", "parity", "traces", "rpc", "personal", "parity_accounts", "secretstore", "signer", "parity_set", "private"]
 
 [websockets]
 disable = false
 interface = "0.0.0.0"
-apis = ["web3", "eth", "pubsub", "net", "parity", "parity_pubsub", "traces", "rpc", "shh", "shh_pubsub"]
+apis = ["web3", "eth", "pubsub", "net", "parity", "parity_pubsub", "traces", "rpc", "shh", "shh_pubsub", "secretstore"]
 hosts = ["all"]
-
 
 [network]
 bootnodes = [
