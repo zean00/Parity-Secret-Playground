@@ -2,6 +2,7 @@
 chain = "dev"
 
 [rpc]
+disable = false
 interface = "0.0.0.0"
 cors = ["all"]
 hosts = ["all"]
@@ -9,7 +10,6 @@ apis = ["web3", "eth", "net", "parity", "traces", "rpc", "personal", "parity_acc
 
 [websockets]
 disable = false
-port = 8546
 interface = "0.0.0.0"
 apis = ["web3", "eth", "pubsub", "net", "parity", "parity_pubsub", "traces", "rpc", "shh", "shh_pubsub"]
 hosts = ["all"]
