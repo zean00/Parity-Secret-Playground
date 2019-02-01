@@ -4,7 +4,7 @@ services:
   member0:
     image: parity/parity:beta
     command:
-      --config /parity/config/users.toml
+      --config /parity/config/alice.toml
       --unsafe-expose
     volumes:
       - ./parity/config:/parity/config
@@ -19,7 +19,7 @@ services:
 
   member1:
     image: parity/parity:beta
-    command: --config /parity/config/users.toml
+    command: --config /parity/config/bob.toml
     volumes:
       - ./parity/config:/parity/config
     ports:
@@ -31,7 +31,7 @@ services:
 
   member2:
     image: parity/parity:beta
-    command: --config /parity/config/users.toml
+    command: --config /parity/config/charlie.toml
     volumes:
       - ./parity/config:/parity/config
     ports:

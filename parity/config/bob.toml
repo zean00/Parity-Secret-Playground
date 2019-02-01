@@ -24,7 +24,7 @@ enabled = true                                              # Enable private tra
 #signer = accountx       # Alice's account to sign public transactions created upon verified private transaction.
 #account = accountx      # Alice's account to sign requests sent to the Secret Store.
 passwords = "/parity/config/secret/bob.pwd"                                     # File containing the password to unlock Alice accounts (signer, private account, validators).
-sstore_url = "http://127.0.0.1:8010"                        # Specify secret store URL used for encrypting private transactions.
+sstore_url = "http://10.1.0.20:8010"                        # Specify secret store URL used for encrypting private transactions.
 
 [account] # unlock Alice's account to deploy the contract
 #unlock = [accountx]
