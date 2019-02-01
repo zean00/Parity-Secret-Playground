@@ -1,11 +1,11 @@
-# Alice's config file in alice.toml
+
 
 [parity]
 chain = "dev"
 
 [rpc]
 port = 8545 #default http port for RPC
-apis = ["secretstore","eth","net","private","parity","personal", "rpc"]    #add "private","parity","personal"
+apis = ["secretstore","eth","net","private","parity","personal", "parity_accounts","rpc"]    #add "private","parity","personal"
 cors = ["all"]                                # allow remix to access this node
 
 [websockets]
