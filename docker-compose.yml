@@ -22,6 +22,8 @@ services:
     command: --config /parity/config/users.toml
     volumes:
       - ./parity/config:/parity/config
+    ports:
+      - 8544:8545
     networks: 
       eth-net:
           ipv4_address: '10.1.0.11'
@@ -32,6 +34,8 @@ services:
     command: --config /parity/config/users.toml
     volumes:
       - ./parity/config:/parity/config
+    ports:
+      - 8543:8545
     networks: 
       eth-net:
           ipv4_address: '10.1.0.12'

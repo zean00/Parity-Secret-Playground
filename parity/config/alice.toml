@@ -1,0 +1,39 @@
+# Alice's config file in alice.toml
+
+[parity]
+chain = "dev"
+
+[rpc]
+port = 8545 #default http port for RPC
+apis = ["secretstore","eth","net","private","parity","personal", "rpc"]    #add "private","parity","personal"
+cors = ["all"]                                # allow remix to access this node
+
+[websockets]
+disable = false
+port = 8546
+interface = "local"
+origins = ["http://localhost:3000", "http://localhost:8080"]
+apis = ["web3", "eth", "pubsub", "net", "parity", "parity_pubsub", "traces", "rpc", "shh", "shh_pubsub"]
+hosts = ["none"]
+
+[secretstore]
+disable = true # users do not run a secret store node
+
+[private_tx]
+enabled = true                                              # Enable private transactions.
+#signer = accountx       # Alice's account to sign public transactions created upon verified private transaction.
+#account = accountx      # Alice's account to sign requests sent to the Secret Store.
+passwords = "/parity/config/secret/alice.pwd"                                     # File containing the password to unlock Alice accounts (signer, private account, validators).
+sstore_url = "http://127.0.0.1:8010"                        # Specify secret store URL used for encrypting private transactions.
+
+[account] # unlock Alice's account to deploy the contract
+#unlock = [accountx]
+password = ["/parity/config/secret/alice.pwd"]
+
+[network]
+port = 30300
+bootnodes = [
+  "enode://2f32cb7c6e9e87e7dd8e37d98be1ec59252543000040736a0c0e726e1a4d52665c583042ff56ffda99b62335f6b16cd6043149c446f97ff9ef7807c849add216@10.1.0.20:30303",
+  "enode://74cc52318360d388de3b4010eff62015817b30ef8d31d1cb88471909c34df9b9acb10e1678510bd668c427549acbbd91e882bedfe340b5a6a84fb7db4c4bea25@10.1.0.21:30303",
+  "enode://ea16ac57906a9491e589d74ff1e5a43211bdc44495df0b3a46938d6994fbf05d6604a19344d52fdef666f2547bad877c2354f3dc8544793f94c9c33846ce0465@10.1.0.22:30303"
+]
