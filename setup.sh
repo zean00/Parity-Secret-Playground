@@ -12,13 +12,13 @@ sed  -i '' -e  s,accountx,$acc1,g parity/config/bob.toml
 sed  -i '' -e  s,accountx,$acc2,g parity/config/charlie.toml
 
 
-sed -i '' -e "/validator/s/^#//g" parity/config/alice.toml
+sed -i '' -e "/validators/s/^#//g" parity/config/alice.toml
 sed -i '' -e "/account/s/^#//g" parity/config/alice.toml
 sed -i '' -e "/unlock/s/^#//g" parity/config/alice.toml
-sed -i '' -e "/validator/s/^#//g" parity/config/bob.toml
+sed -i '' -e "/validators/s/^#//g" parity/config/bob.toml
 sed -i '' -e "/account/s/^#//g" parity/config/bob.toml
 sed -i '' -e "/unlock/s/^#//g" parity/config/bob.toml
-sed -i '' -e "/validator/s/^#//g" parity/config/charlie.toml
+sed -i '' -e "/validators/s/^#//g" parity/config/charlie.toml
 sed -i '' -e "/account/s/^#//g" parity/config/charlie.toml
 sed -i '' -e "/unlock/s/^#//g" parity/config/charlie.toml
 
