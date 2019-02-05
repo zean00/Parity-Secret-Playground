@@ -21,6 +21,7 @@ disable = true # users do not run a secret store node
 enabled = true                                              # Enable private transactions.
 #validators = [accountx]        # Alice's account to sign public transactions created upon verified private transaction.
 #account = accountx      # Alice's account to sign requests sent to the Secret Store.
+#signer = accountx
 passwords = "/parity/config/secret/bob.pwd"                                     # File containing the password to unlock Alice accounts (signer, private account, validators).
 sstore_url = "http://10.1.0.20:8010"                        # Specify secret store URL used for encrypting private transactions.
 
