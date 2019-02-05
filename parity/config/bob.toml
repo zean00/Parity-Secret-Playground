@@ -29,7 +29,7 @@ sstore_url = "http://10.1.0.20:8010"                        # Specify secret sto
 password = ["/parity/config/secret/bob.pwd"]
 
 [network]
-port = 30300
+port = 30303
 bootnodes = [
   "enode://66c781e3e47a7cd621eef9d3d62cfca07b6d45ff31fa4e1b15145534ca3e32817739f2af7c3e65d655396def2faf4a00cb1443e9566cbebc902fad128f1d9cdc@10.1.0.20:30303",
   "enode://93527f7c85e5aa833ba5ce0b6bffa271abc136f0705e6b53bd6d893e326fb7f55de7a4919e11dc6e0fcf0906d921739fbccd13d518bd391470a05717c151aeb6@10.1.0.21:30303",
