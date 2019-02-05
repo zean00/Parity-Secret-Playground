@@ -3,29 +3,17 @@ docker-compose pull member0
 docker-compose up -d member0 member1 member2
 sleep 10
 
-acc0=$(curl --data '{"jsonrpc":"2.0","method":"parity_newAccountFromPhrase","params":["alicepwd", "alicepwd"],"id":0}' -H "Content-Type: application/json" -X POST localhost:8545|jq .result)
-acc1=$(curl --data '{"jsonrpc":"2.0","method":"parity_newAccountFromPhrase","params":["bobpwd", "bobpwd"],"id":0}' -H "Content-Type: application/json" -X POST localhost:8544|jq .result)
-acc2=$(curl --data '{"jsonrpc":"2.0","method":"parity_newAccountFromPhrase","params":["charliepwd", "charliepwd"],"id":0}' -H "Content-Type: application/json" -X POST localhost:8543|jq .result)
+alice=$(curl --data '{"jsonrpc":"2.0","method":"parity_newAccountFromPhrase","params":["alicepwd", "alicepwd"],"id":0}' -H "Content-Type: application/json" -X POST localhost:8545|jq .result)
+bob=$(curl --data '{"jsonrpc":"2.0","method":"parity_newAccountFromPhrase","params":["bobpwd", "bobpwd"],"id":0}' -H "Content-Type: application/json" -X POST localhost:8544|jq .result)
+charlie=$(curl --data '{"jsonrpc":"2.0","method":"parity_newAccountFromPhrase","params":["charliepwd", "charliepwd"],"id":0}' -H "Content-Type: application/json" -X POST localhost:8543|jq .result)
 
-sed  -i '' -e  s,accountx,$acc0,g parity/config/alice.toml
-sed  -i '' -e  s,accountx,$acc1,g parity/config/bob.toml
-sed  -i '' -e  s,accountx,$acc2,g parity/config/charlie.toml
-
-
-sed -i '' -e "/validators/s/^#//g" parity/config/alice.toml
-sed -i '' -e "/signer/s/^#//g" parity/config/alice.toml
-sed -i '' -e "/account/s/^#//g" parity/config/alice.toml
-sed -i '' -e "/unlock/s/^#//g" parity/config/alice.toml
-sed -i '' -e "/validators/s/^#//g" parity/config/bob.toml
-sed -i '' -e "/signer/s/^#//g" parity/config/bob.toml
-sed -i '' -e "/account/s/^#//g" parity/config/bob.toml
-sed -i '' -e "/signer/s/^#//g" parity/config/bob.toml
-sed -i '' -e "/unlock/s/^#//g" parity/config/bob.toml
-sed -i '' -e "/validators/s/^#//g" parity/config/charlie.toml
-sed -i '' -e "/signer/s/^#//g" parity/config/charlie.toml
-sed -i '' -e "/account/s/^#//g" parity/config/charlie.toml
-sed -i '' -e "/unlock/s/^#//g" parity/config/charlie.toml
-sed -i '' -e "/signer/s/^#//g" parity/config/charlie.toml
-
+for i in alice bob charlie; do
+loc=parity/config/$i.toml
+sed -i '' -e  s,accountx,$$i,g $loc
+sed -i '' -e "/validators/s/^#//g" $loc
+sed -i '' -e "/signer/s/^#//g" $loc
+sed -i '' -e "/account/s/^#//g" $loc
+sed -i '' -e "/unlock/s/^#//g" $loc
+done
 
 docker kill $(docker ps -q)
