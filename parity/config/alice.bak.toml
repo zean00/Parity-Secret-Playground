@@ -33,4 +33,4 @@ password = ["/parity/config/secret/alice.pwd"]
 
 [network]
 port = 30303
-#bootnodes = [bobE,charlieE]
+#bootnodes = ["enode://ss1E","enode://ss2E","enode://ss3E",bobE,charlieE]

@@ -11,3 +11,4 @@ parity/config/bob.toml
 parity/config/db.bob/*
 parity/config/charlie.toml
 parity/config/db.charlie/*
+test.sh
