@@ -90,6 +90,11 @@ cp parity/config/$i.bak.toml $loc
 sed -i '' -e "/validators/s/^#//g" -e "/signer/s/^#//g" -e "/account/s/^#//g" -e "/unlock/s/^#//g" -e "/bootnodes/s/^#//g" $loc
 done
 
+cp example.sol truffle/contracts/Contract.sol
+
+sed -i '' -e s,alicer,$alice,g -e s,bobr,$bob,g -e 's/\"//g' truffle/contracts/Contract.sol
+
+
 sed -i '' -e s,accountx,$alice,g  parity/config/alice.toml
 sed -i '' -e s,accountx,$bob,g parity/config/bob.toml
 sed -i '' -e s,accountx,$charlie,g parity/config/charlie.toml
@@ -101,4 +106,8 @@ sed -i '' -e s,aliceE,$aliceE,g -e s,bobE,$bobE,g -e s,charlieE,$charlieE,g \
 #fix test script
 cp axel-test.sh test.sh
 sed -i '' -e  s,accountx,$alice,g test.sh
+
+#contract compile
+
+cd truffle && npm i && npx truffle compile
 
