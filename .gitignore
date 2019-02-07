@@ -1,5 +1,3 @@
-.idea
-.DS_Store
 .DS_Store
 parity/config/secret/db.ss1/chains/DevelopmentChain/db/*
 parity/config/secret/db.ss1/chains/DevelopmentChain/network/*
@@ -10,3 +8,6 @@ parity/config/secret/db.ss2/db/*
 parity/config/secret/db.ss3/chains/DevelopmentChain/db/*
 parity/config/secret/db.ss3/chains/DevelopmentChain/network/*
 parity/config/secret/db.ss3/db/*
+parity/config/alice.toml
+parity/config/bob.toml
+parity/config/charlie.toml
