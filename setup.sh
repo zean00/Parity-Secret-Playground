@@ -6,7 +6,6 @@
 docker-compose down
 rm -rf parity/config/secret/db.*
 rm -rf parity/config/db.*
-
 docker-compose pull ss1
 
 #create secret accounts
@@ -63,8 +62,14 @@ sed -i '' -e "/bootnodes/s/^#//g" -e "/nodes/s/^#//g" $loc
 done
 
 # setup alice bob and charlie
-
 docker-compose -f docker-compose.setup.yml pull alice
+
+#create accounts
+
+alice=$(docker run  -i -v $PWD/parity/config:/parity/config parity/parity:beta --config /parity/config/alice.bak.toml account new)
+bob=$(docker run  -i -v $PWD/parity/config:/parity/config parity/parity:beta --config /parity/config/bob.bak.toml account new)
+charlie=$(docker run  -i -v $PWD/parity/config:/parity/config parity/parity:beta --config /parity/config/charlie.bak.toml account new)
+
 docker-compose -f docker-compose.setup.yml up -d alice bob charlie
 
 sleep 10
@@ -74,12 +79,6 @@ sleep 10
 aliceE=$(curl --data '{"method":"parity_enode","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545|jq .result)
 bobE=$(curl --data '{"method":"parity_enode","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8544|jq .result)
 charlieE=$(curl --data '{"method":"parity_enode","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8543|jq .result)
-
-#create accounts
-
-alice=$(curl --data '{"jsonrpc":"2.0","method":"parity_newAccountFromPhrase","params":["alicepwd", "alicepwd"],"id":0}' -H "Content-Type: application/json" -X POST localhost:8545|jq .result)
-bob=$(curl --data '{"jsonrpc":"2.0","method":"parity_newAccountFromPhrase","params":["bobpwd", "bobpwd"],"id":0}' -H "Content-Type: application/json" -X POST localhost:8544|jq .result)
-charlie=$(curl --data '{"jsonrpc":"2.0","method":"parity_newAccountFromPhrase","params":["charliepwd", "charliepwd"],"id":0}' -H "Content-Type: application/json" -X POST localhost:8543|jq .result)
 docker kill $(docker ps -q)
 
 # create new config files with the correct accounts
@@ -90,12 +89,12 @@ cp parity/config/$i.bak.toml $loc
 sed -i '' -e "/validators/s/^#//g" -e "/signer/s/^#//g" -e "/account/s/^#//g" -e "/unlock/s/^#//g" -e "/bootnodes/s/^#//g" $loc
 done
 
-cp example.sol truffle/contracts/Contract.sol
+cp example.sol Contract.sol
+cp post.bak.sh post.sh
 
-sed -i '' -e s,alicer,$alice,g -e s,bobr,$bob,g -e 's/\"//g' truffle/contracts/Contract.sol
+sed -i '' -e s,alicer,$alice,g -e s,bobr,$bob,g Contract.sol post.sh
 
-
-sed -i '' -e s,accountx,$alice,g  parity/config/alice.toml
+sed -i '' -e s,accountx,$alice,g  parity/config/alice.toml 
 sed -i '' -e s,accountx,$bob,g parity/config/bob.toml
 sed -i '' -e s,accountx,$charlie,g parity/config/charlie.toml
 
@@ -103,11 +102,6 @@ sed -i '' -e s,aliceE,$aliceE,g -e s,bobE,$bobE,g -e s,charlieE,$charlieE,g \
     -e s,ss1E,$ss1E,g -e s,ss2E,$ss2E,g -e s,ss3E,$ss3E,g \
     parity/config/alice.toml parity/config/bob.toml parity/config/charlie.toml
 
-#fix test script
-cp axel-test.sh test.sh
-sed -i '' -e  s,accountx,$alice,g test.sh
 
-#contract compile
 
-cd truffle && npm i && npx truffle compile
 

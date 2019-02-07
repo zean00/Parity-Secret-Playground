@@ -22,13 +22,13 @@ disable = true # users do not run a secret store node
 
 [private_tx]
 enabled = true                                              # Enable private transactions.
-#account = accountx      # Alice's account to sign requests sent to the Secret Store.
-#signer = accountx
-passwords = "/parity/config/secret/alice.pwd"                                     # File containing the password to unlock Alice accounts (signer, private account, validators).
+#account = "accountx"      # Alice's account to sign requests sent to the Secret Store.
+#signer = "accountx"
+passwords = "/parity/config/secret/alice.pwd"                                     # File containing the password to unlock Alice accounts (signer, private account, validat0rs).
 sstore_url = "http://10.1.0.21:8010"                        # Specify secret store URL used for encrypting private transactions.
 
 [account] # unlock Alice's account to deploy the contract
-#unlock = [accountx]
+#unlock = ["accountx"]
 password = ["/parity/config/secret/alice.pwd"]
 
 [network]
