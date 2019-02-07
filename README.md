@@ -1,8 +1,8 @@
 # Parity Secret Store playground
 
-Master branch is PoA 3 member nodes, 3 secret nodes and 3 authority nodes
+WORKING: Master branch is instantseal 3 member nodes and 3 secret nodes
 
-Instantseal branch is instantseal... 3 member nodes and 3 secret nodes
+NOT WORKING YET: poa branch is PoA 3 member nodes, 3 secret nodes and 3 authority nodes
 
 jq is a requirement: `sudo apt-get install jq` on linux or `brew install jq` on mac
 
