@@ -1,6 +1,6 @@
 [
   {
-    "name"              : "secret1",
+    "name"              : "ss1",
     "script"            : "app.js",
     "log_date_format"   : "YYYY-MM-DD HH:mm Z",
     "merge_logs"        : false,
@@ -14,14 +14,14 @@
       "RPC_HOST"        : "10.1.0.21",
       "RPC_PORT"        : "8545",
       "LISTENING_PORT"  : "30303",
-      "INSTANCE_NAME"   : "secret1",
+      "INSTANCE_NAME"   : "ss1",
       "WS_SERVER"       : "ws://dashboard:3000",
       "WS_SECRET"       : "123",
       "VERBOSITY"       : 3
     }
   },
   {
-    "name"              : "secret2",
+    "name"              : "ss2",
     "script"            : "app.js",
     "log_date_format"   : "YYYY-MM-DD HH:mm Z",
     "merge_logs"        : false,
@@ -35,14 +35,14 @@
       "RPC_HOST"        : "10.1.0.22",
       "RPC_PORT"        : "8545",
       "LISTENING_PORT"  : "30303",
-      "INSTANCE_NAME"   : "secret2",
+      "INSTANCE_NAME"   : "ss2",
       "WS_SERVER"       : "ws://dashboard:3000",
       "WS_SECRET"       : "123",
       "VERBOSITY"       : 3
     }
   },
   {
-    "name"              : "secret3",
+    "name"              : "ss3",
     "script"            : "app.js",
     "log_date_format"   : "YYYY-MM-DD HH:mm Z",
     "merge_logs"        : false,
@@ -56,14 +56,14 @@
       "RPC_HOST"        : "10.1.0.23",
       "RPC_PORT"        : "8545",
       "LISTENING_PORT"  : "30303",
-      "INSTANCE_NAME"   : "secret3",
+      "INSTANCE_NAME"   : "ss3",
       "WS_SERVER"       : "ws://dashboard:3000",
       "WS_SECRET"       : "123",
       "VERBOSITY"       : 3
     }
   },
   {
-    "name"              : "member1",
+    "name"              : "alice",
     "script"            : "app.js",
     "log_date_format"   : "YYYY-MM-DD HH:mm Z",
     "merge_logs"        : false,
@@ -77,14 +77,14 @@
       "RPC_HOST"        : "10.1.0.11",
       "RPC_PORT"        : "8545",
       "LISTENING_PORT"  : "30303",
-      "INSTANCE_NAME"   : "member1",
+      "INSTANCE_NAME"   : "alice",
       "WS_SERVER"       : "ws://dashboard:3000",
       "WS_SECRET"       : "123",
       "VERBOSITY"       : 3
     }
   },
   {
-    "name"              : "member2",
+    "name"              : "bob",
     "script"            : "app.js",
     "log_date_format"   : "YYYY-MM-DD HH:mm Z",
     "merge_logs"        : false,
@@ -98,14 +98,14 @@
       "RPC_HOST"        : "10.1.0.12",
       "RPC_PORT"        : "8545",
       "LISTENING_PORT"  : "30303",
-      "INSTANCE_NAME"   : "member2",
+      "INSTANCE_NAME"   : "bob",
       "WS_SERVER"       : "ws://dashboard:3000",
       "WS_SECRET"       : "123",
       "VERBOSITY"       : 3
     }
   },
   {
-    "name"              : "member3",
+    "name"              : "charlie",
     "script"            : "app.js",
     "log_date_format"   : "YYYY-MM-DD HH:mm Z",
     "merge_logs"        : false,
@@ -119,7 +119,7 @@
       "RPC_HOST"        : "10.1.0.13",
       "RPC_PORT"        : "8545",
       "LISTENING_PORT"  : "30303",
-      "INSTANCE_NAME"   : "member3",
+      "INSTANCE_NAME"   : "charlie",
       "WS_SERVER"       : "ws://dashboard:3000",
       "WS_SECRET"       : "123",
       "VERBOSITY"       : 3

@@ -1,5 +1,6 @@
 [parity]
 chain = "dev"
+base_path = "/parity/config/db.charlie"
 
 [rpc]
 port = 8545 #default http port for RPC
@@ -19,20 +20,15 @@ disable = true # users do not run a secret store node
 
 [private_tx]
 enabled = true                                              # Enable private transactions.
-#validators = [accountx]       # Alice's account to sign public transactions created upon verified private transaction.
-#account = accountx      # Alice's account to sign requests sent to the Secret Store.
+#account = accountx      # charlie's account to sign requests sent to the Secret Store.
 #signer = accountx
-passwords = "/parity/config/secret/charlie.pwd"                                     # File containing the password to unlock Alice accounts (signer, private account, validators).
-sstore_url = "http://10.1.0.20:8010"                        # Specify secret store URL used for encrypting private transactions.
+passwords = "/parity/config/secret/charlie.pwd"                                     # File containing the password to unlock charlie accounts (signer, private account, validators).
+sstore_url = "http://10.1.0.21:8010"                        # Specify secret store URL used for encrypting private transactions.
 
-[account] # unlock Alice's account to deploy the contract
+[account] # unlock charlie's account to deploy the contract
 #unlock = [accountx]
 password = ["/parity/config/secret/charlie.pwd"]
 
 [network]
 port = 30303
-bootnodes = [
-  "enode://66c781e3e47a7cd621eef9d3d62cfca07b6d45ff31fa4e1b15145534ca3e32817739f2af7c3e65d655396def2faf4a00cb1443e9566cbebc902fad128f1d9cdc@10.1.0.20:30303",
-  "enode://93527f7c85e5aa833ba5ce0b6bffa271abc136f0705e6b53bd6d893e326fb7f55de7a4919e11dc6e0fcf0906d921739fbccd13d518bd391470a05717c151aeb6@10.1.0.21:30303",
-  "enode://ea16ac57906a9491e589d74ff1e5a43211bdc44495df0b3a46938d6994fbf05d6604a19344d52fdef666f2547bad877c2354f3dc8544793f94c9c33846ce0465@10.1.0.22:30303"
-]
+#bootnodes = [aliceE,bobE]

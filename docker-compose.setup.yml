@@ -4,7 +4,7 @@ services:
   alice:
     image: parity/parity:beta
     command:
-      --config /parity/config/alice.toml
+      --config /parity/config/alice.bak.toml
       --unsafe-expose
     volumes:
       - ./parity/config:/parity/config
@@ -19,7 +19,7 @@ services:
 
   bob:
     image: parity/parity:beta
-    command: --config /parity/config/bob.toml
+    command: --config /parity/config/bob.bak.toml
       --unsafe-expose
     volumes:
       - ./parity/config:/parity/config
@@ -32,7 +32,7 @@ services:
 
   charlie:
     image: parity/parity:beta
-    command: --config /parity/config/charlie.toml
+    command: --config /parity/config/charlie.bak.toml
       --unsafe-expose
     volumes:
       - ./parity/config:/parity/config
@@ -45,7 +45,7 @@ services:
   ss1:
     image: kryha/parity-secretstore
     command:
-      --config /parity/config/secret/ss1.toml
+      --config /parity/config/secret/ss1.bak.toml
       --ws-interface 0.0.0.0
       --unsafe-expose
     volumes:
@@ -59,7 +59,7 @@ services:
   ss2:
     image: kryha/parity-secretstore
     command:
-      --config /parity/config/secret/ss2.toml
+      --config /parity/config/secret/ss2.bak.toml
       --ws-interface 0.0.0.0
       --unsafe-expose
     volumes:
@@ -71,7 +71,7 @@ services:
   ss3:
     image: kryha/parity-secretstore
     command:
-      --config /parity/config/secret/ss3.toml
+      --config /parity/config/secret/ss3.bak.toml
       --ws-interface 0.0.0.0
       --unsafe-expose
     volumes:
@@ -80,24 +80,6 @@ services:
       eth-net:
           ipv4_address: '10.1.0.23'
 
-      
-  monitor:
-    image: buythewhale/ethstats_monitor
-    volumes:
-      - ./monitor/app.json:/home/ethnetintel/eth-net-intelligence-api/app.json
-    networks: 
-      eth-net:
-          ipv4_address: '10.1.0.100'
-
-  dashboard:
-    image: buythewhale/ethstats
-    volumes:
-      - ./dashboard/ws_secret.json:/eth-netstats/ws_secret.json
-    ports:
-      - 3001:3000
-    networks: 
-      eth-net:
-          ipv4_address: '10.1.0.200'
 
 networks:
   eth-net:
