@@ -11,6 +11,7 @@ parity/config/bob.toml
 parity/config/db.bob/*
 parity/config/charlie.toml
 parity/config/db.charlie/*
-test.sh
-Contract.sol
-post.sh
+contracts/contract.sol
+contracts/SSPermissions.bin
+contracts/Test1.bin
+SSSKey.txt
