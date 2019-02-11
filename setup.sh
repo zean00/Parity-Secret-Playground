@@ -130,14 +130,10 @@ COMPOSE=$(curl -s --data '{"method":"parity_composeTransaction","params":[{"from
 GAS=$(echo $COMPOSE | jq .gas)
 NONCE=$(echo $COMPOSE | jq .nonce)
 
-sleep 2
-
 printf  "Sign contract\n"
 
 SIGNED=$(curl -s --data '{"method":"personal_signTransaction","params":[{"condition":null,"data":"'$bytecode'","from":"'$alice'","gas":'$GAS',"gasPrice":"0x0","nonce":'$NONCE',"to":null,"value":"0x0"},"'$PASSWORD'"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545 | jq .result)
 CONTRACTRAW=$(echo $SIGNED | jq .raw)
-
-sleep 2
 
 printf "Sending contract: \n"
 RESULT=$(curl -s --data '{"method":"eth_sendRawTransaction","params":['$CONTRACTRAW'],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545|jq .result)
@@ -145,6 +141,7 @@ RESULT=$(curl -s --data '{"method":"eth_sendRawTransaction","params":['$CONTRACT
 sleep 2
 
 ADDRESS=$(curl -s --data '{"method":"eth_getTransactionReceipt","params":['$RESULT'],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545|jq '.result .contractAddress')
+echo $ADDRESS
 
 # cut x again
 
