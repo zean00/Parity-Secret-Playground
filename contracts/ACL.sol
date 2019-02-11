@@ -17,7 +17,7 @@ contract SSPermissions {
 
     // TODO: add document specific check
     function checkPermissions(address user, bytes32 document) public returns (bool) {
-        return authorized[user];
+        return user == owner || authorized[user];
     }
 
     function addAuth(address user) public _isOwner {
