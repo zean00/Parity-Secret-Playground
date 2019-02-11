@@ -89,10 +89,6 @@ cp parity/config/$i.bak.toml $loc
 sed -i '' -e "/validators/s/^#//g" -e "/signer/s/^#//g" -e "/account/s/^#//g" -e "/unlock/s/^#//g" -e "/bootnodes/s/^#//g" $loc
 done
 
-cp contracts/example.sol contracts/contract.sol
-
-sed -i '' -e s,alicer,$alice,g -e s,bobr,$bob,g contracts/contract.sol
-
 sed -i '' -e s,accountx,$alice,g  parity/config/alice.toml 
 sed -i '' -e s,accountx,$bob,g parity/config/bob.toml
 sed -i '' -e s,accountx,$charlie,g parity/config/charlie.toml
@@ -103,7 +99,7 @@ sed -i '' -e s,aliceE,$aliceE,g -e s,bobE,$bobE,g -e s,charlieE,$charlieE,g \
 
 # compile acl contract
 
-docker run -v $PWD/contracts:/solidity ethereum/solc:0.4.24 --bin -o . contract.sol --overwrite
+docker run -v $PWD/contracts:/solidity ethereum/solc:0.4.24 --bin -o . ACL.sol --overwrite
 
 # deploy acl
 
@@ -145,7 +141,6 @@ sleep 2
 
 printf "Sending contract: \n"
 RESULT=$(curl -s --data '{"method":"eth_sendRawTransaction","params":['$CONTRACTRAW'],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545|jq .result)
-echo "$RESULT"
 
 sleep 2
 
