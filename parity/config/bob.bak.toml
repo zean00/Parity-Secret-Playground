@@ -32,5 +32,5 @@ password = ["/parity/config/secret/bob.pwd"]
 
 [network]
 port = 30303
-#bootnodes = ["enode://ss1E","enode://ss2E","enode://ss3E",aliceE,charlieE]
+#bootnodes = ["enode://ssE1","enode://ssE2","enode://ssE3","enode://mmEalice","enode://mmEcharlie"]
 

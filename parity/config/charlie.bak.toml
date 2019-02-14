@@ -31,4 +31,4 @@ password = ["/parity/config/secret/charlie.pwd"]
 
 [network]
 port = 30303
-#bootnodes = ["enode://ss1E","enode://ss2E","enode://ss3E",aliceE,bobE]
+#bootnodes = ["enode://ssE1","enode://ssE2","enode://ssE3","enode://mmEalice","enode://mmEbob"]
