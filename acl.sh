@@ -1,15 +1,18 @@
 #!/bin/bash
-set -x
+
 alice=$1
 bob=$2
-PASSWORD="alicepwd"
-DOC=45ce99addb0f8385bd24f30da619ddcc0cadadab73e2a4ffb7801083086b3fc2 # echo mySecretDocument | sha256sum
+PASSWORD=$3
+DOC=$(echo mySecretDocument | sha256sum| awk '{ print $1 }')
+
+green=`tput setaf 2`
+reset=`tput sgr0`
 
 cp contracts/example.sol contracts/contract.sol
 
 sed -i '' -e s,alicer,$alice,g -e s,bobr,$bob,g contracts/contract.sol
 
-# compile acl contract
+# Compile acl contract
 
 docker run -v $PWD/contracts:/solidity ethereum/solc:0.4.24 --bin -o . contract.sol --overwrite
 
@@ -47,7 +50,7 @@ sleep 2
 
 printf "Sending contract: \n"
 RESULT=$(curl -s --data '{"method":"eth_sendRawTransaction","params":['$CONTRACTRAW'],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545|jq .result)
-echo "$RESULT"
+echo -e "${green}$RESULT${reset}"
 
 sleep 2
 
@@ -62,3 +65,5 @@ ADDRESSx=$(echo $ADDRESS|cut -d "x" -f 2)
 docker kill $(docker ps -q)
 
 sed -i '' -e  's,acl_contract = "none",acl_contract = "'$ADDRESSx',g' parity/config/secret/ss1.toml parity/config/secret/ss2.toml parity/config/secret/ss3.toml
+
+echo -e "${green}ACL deployed${reset}"

@@ -1,5 +1,10 @@
 #!/bin/bash
 
+declare -A loc mm mmE mmlog
+
+green=`tput setaf 2`
+reset=`tput sgr0`
+
 # cleanup any previous attempts of running this script
 docker-compose down
 rm -rf parity/config/secret/db.*
@@ -17,7 +22,7 @@ do
     cp parity/config/secret/ss$i.bak.toml ${loc[$i]}
 
     # create secret accounts
-    ss[$i]=$(docker-compose run -T  --rm ss$i account new)
+    ss[$i]=$(docker run --rm -i -v $PWD/parity/config:/parity/config kryha/parity:secretstore --config ${loc[$i]} account new)
 
     # cutting the 0x 
     ssx[$i]=$(echo ${ss[$i]}|cut -d "x" -f 2)
@@ -34,57 +39,57 @@ do
 
 done
 
-# replacing dummy variables with enodes and node public keys
-for i in {1..3}
-do
-    for j in {1..3}
-    do
-        sed -i '' -e  s,ssE$i,${ssE[$i]},g -e  s,ssp$i,${ssp[$i]},g \
-                  -e "/bootnodes/s/^#//g"  -e "/nodes/s/^#//g" ${loc[$j]}
-    done
-done
-
 # setup alice bob and charlie
-for i in alice bob charlie; do
+for i in alice bob charlie;
+do
     
     #copy configs
-    loc["$i"]=parity/config/$i.toml
+    loc[$i]=parity/config/$i.toml
     cp parity/config/$i.bak.toml ${loc[$i]}
     
     # create accounts
-    mm["$i"]=$(docker-compose run -T --rm $i account new)
+    mm[$i]=$(docker run --rm -i -v $PWD/parity/config:/parity/config kryha/parity:beta --config ${loc[$i]} account new)
 
     # grep enode
-    mmlog["$i"]=$(timeout 10s docker-compose up $i)
-    mmE["$i"]=$(echo "${mmlog[$i]}"|grep "Public node URL:"|cut -d "/" -f 3)
-    echo ${mmE["$i"]}
+    mmlog[$i]=$(timeout 10s docker-compose up $i)
+    mmE[$i]=$(echo "${mmlog[$i]}"|grep "Public node URL:"|cut -d "/" -f 3)
     docker kill $(docker ps -q)
 
-    # edit new config files with the correct accounts
+done
 
-    sed -i ''   -e "/validators/s/^#//g"   -e "/signer/s/^#//g" \
-                -e "/account/s/^#//g"      -e "/unlock/s/^#//g" \
-                -e "/bootnodes/s/^#//g"    -e s,accountx,${mm["$i"]},g \
-                -e s,mmE$i,${mmE["$i"]},g  ${loc["$i"]}
+# replacing dummy variables with accounts, enodes and public addresses
+for i in alice bob charlie 1 2 3;
+do
+    # accounts
+    sed -i ''   -e "/validators/s/^#//g"    -e "/signer/s/^#//g" \
+                -e "/account/s/^#//g"       -e "/unlock/s/^#//g" \
+                -e "/bootnodes/s/^#//g"     -e "/nodes/s/^#//g" \
+                -e "s,accountx,${mm[$i]},g" ${loc[$i]}
+                # echo $i
+                # echo ${loc[$i]}
     
-    for j in {1..3}
+    for j in alice bob charlie 1 2 3;
     do
-        sed -i '' -e s,ssE$j,${ssE[$j]},g   ${loc["$i"]}
+        # enodes and public addresses
+            sed -i '' -e "s,mmE$j,${mmE[$j]},g" -e "s,ssE$j,${ssE[$j]},g" \
+                      -e s,ssp$j,${ssp[$j]},g  ${loc[$i]}
+
     done
 done
 
-read -p "Do you want to deploy the acl permissioning contract? (RECOMMENDED) (y/n)? " CONT
+read -p "Do you want to deploy the acl permissioning contract? (RECOMMENDED) ${green}(y/n)${reset}? " CONT
 if [ "$CONT" = "y" ]; then
     
     # deploy acl
-    bash acl.sh ${mm["alice"]} ${mm["bob"]}
+    pass=$(cat parity/config/secret/alice.pwd)
+    bash acl.sh ${mm["alice"]} ${mm["bob"]} $pass
 
     #private contract
-    read -p "Do you want to deploy the example private contract?  (y/n)? " CONT
+    read -p "Do you want to deploy the example private contract? ${green}(y/n)${reset}? " CONT
     if [ "$CONT" = "y" ]; then
 
-        bash private.sh ${mm["alice"]} ${mm["bob"]}
+        bash private.sh ${mm["alice"]} ${mm["bob"]} $pass
     else
-      echo "Setup done!"
+      echo -e "${green}Setup done!${reset}"
     fi
 fi
